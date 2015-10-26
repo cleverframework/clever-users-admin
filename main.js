@@ -7,9 +7,9 @@ const Package = cleverCore.Package
 var UsersAdminPackage = new Package('users-admin')
 
 // All CLEVER packages require registration
-UsersApiPackage
+UsersAdminPackage
   .attach({
-    where: '/usersadmin'
+    where: '/'
   })
   .routes(['app', 'config'])
   .models()
