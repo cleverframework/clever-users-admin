@@ -1,2 +1,2 @@
-# clever-users-api
-Users API package for CLEVER V1.
+# clever-users-admin
+Users Admin package for CLEVER V1.
