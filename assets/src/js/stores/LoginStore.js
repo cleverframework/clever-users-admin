@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 
 class LoginStore extends BaseStore {
 
-  constructor() {
+  constructor () {
     super()
     this.subscribe(() => this._registerToActions.bind(this))
     this._user = null

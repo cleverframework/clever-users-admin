@@ -16,8 +16,8 @@ export default class Login extends React.Component {
     e.preventDefault()
     Auth.login(this.state.user, this.state.password)
       .catch(function(err) {
-        alert("There's an error logging in")
-        console.log("Error logging in", err)
+        alert('There\'s an error logging in')
+        console.error('Error logging in', err)
       })
   }
 
@@ -27,8 +27,8 @@ export default class Login extends React.Component {
         <h1>Login</h1>
         <form role="form">
         <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input type="text" valueLink={this.linkState('user')} className="form-control" id="username" placeholder="Username" />
+          <label htmlFor="username">Email</label>
+          <input type="text" valueLink={this.linkState('user')} className="form-control" id="email" placeholder="Email" />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>

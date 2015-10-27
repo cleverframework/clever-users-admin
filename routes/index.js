@@ -11,7 +11,7 @@ const router = express.Router()
 module.exports = function(UsersAdminPackage, app, config) {
 
   router.get('/auth', (req, res, next) => {
-    res.send(UsersAdminPackage.render('layout'))
+    res.send(UsersAdminPackage.render('auth'))
   })
 
   return router

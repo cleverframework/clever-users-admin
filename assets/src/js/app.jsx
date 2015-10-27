@@ -1,29 +1,27 @@
+import $ from 'jquery'
+import foundation from 'foundation'
 import React from 'react'
-import Router, {Route} from 'react-router'
-import AuthenticatedApp from './components/AuthenticatedApp'
+import Router, { Route } from 'react-router'
+import AuthApp from './components/AuthApp'
 import Login from './components/Login'
 import Signup from './components/Signup'
-import Home from './components/Home'
-import Quote from './components/Quote'
 import RouterContainer from './services/RouterContainer'
 import LoginActions from './actions/LoginActions'
 
-var routes = (
-  <Route handler={AuthenticatedApp}>
-    <Route name="login" handler={Login}/>
+$(document).foundation()
+
+const routes = (
+  <Route handler={AuthApp}>
+    <Route name="login" path="/" handler={Login}/>
     <Route name="signup" handler={Signup}/>
-    <Route name="home" path="/" handler={Home}/>
-    <Route name="quote" handler={Quote}/>
   </Route>
 )
 
-var router = Router.create({routes})
+const router = Router.create({ routes })
 RouterContainer.set(router)
 
-let jwt = localStorage.getItem('jwt')
-if (jwt) {
-  LoginActions.loginUser(jwt)
-}
+const jwt = localStorage.getItem('jwt')
+if (jwt) LoginActions.loginUser(jwt)
 
 router.run((Handler) => {
   React.render(<Handler />, document.getElementById('content'))

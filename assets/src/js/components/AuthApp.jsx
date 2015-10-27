@@ -6,36 +6,36 @@ import { Route, RouteHandler, Link } from 'react-router'
 import AuthService from '../services/AuthService'
 
 export default class AuthenticatedApp extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = this._getLoginState()
   }
 
-  _getLoginState () {
+  _getLoginState() {
     return {
       userLoggedIn: LoginStore.isLoggedIn()
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.changeListener = this._onChange.bind(this)
     LoginStore.addChangeListener(this.changeListener)
   }
 
-  _onChange () {
+  _onChange() {
     this.setState(this._getLoginState())
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     LoginStore.removeChangeListener(this.changeListener)
   }
 
-  render () {
+  render() {
     return (
       <div className="container">
         <nav className="navbar navbar-default">
           <div className="navbar-header">
-            <a className="navbar-brand" href="/">React Flux app with JWT authentication</a>
+            <a className="navbar-brand" href="/">Clever V1</a>
           </div>
           {this.headerItems}
         </nav>
@@ -44,35 +44,23 @@ export default class AuthenticatedApp extends React.Component {
     )
   }
 
-  logout (e) {
+  logout(e) {
     e.preventDefault()
     AuthService.logout()
   }
 
-  get headerItems () {
+  get headerItems() {
     if (!this.state.userLoggedIn) {
       return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="login">Login</Link>
-        </li>
-        <li>
-          <Link to="signup">Signup</Link>
-        </li>
-      </ul>)
-    } else {
-      return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="home">Home</Link>
-        </li>
-        <li>
-          <Link to="quote">Quote</Link>
-        </li>
-        <li>
-          <a href="" onClick={this.logout}>Logout</a>
-        </li>
-      </ul>)
+        <ul className="nav navbar-nav navbar-right">
+          <li>
+            <Link to="login">Login</Link>
+          </li>
+          <li>
+            <Link to="signup">Signup</Link>
+          </li>
+        </ul>
+      )
     }
   }
 }
