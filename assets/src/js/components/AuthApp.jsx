@@ -32,14 +32,15 @@ export default class AuthenticatedApp extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-default">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">Clever V1</a>
+      <div className="large-3 large-centered columns">
+        <div className="login-box">
+          <div className="row">
+            <div className="large-12 columns">
+              <h2>Clever V1</h2>
+              <RouteHandler/>
+            </div>
           </div>
-          {this.headerItems}
-        </nav>
-        <RouteHandler/>
+        </div>
       </div>
     )
   }
@@ -49,18 +50,4 @@ export default class AuthenticatedApp extends React.Component {
     AuthService.logout()
   }
 
-  get headerItems() {
-    if (!this.state.userLoggedIn) {
-      return (
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <Link to="login">Login</Link>
-          </li>
-          <li>
-            <Link to="signup">Signup</Link>
-          </li>
-        </ul>
-      )
-    }
-  }
 }

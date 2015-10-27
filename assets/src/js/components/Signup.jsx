@@ -1,5 +1,6 @@
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
+import { Route, RouteHandler, Link } from 'react-router'
 import Auth from '../services/AuthService'
 
 export default class Signup extends React.Component {
@@ -23,26 +24,35 @@ export default class Signup extends React.Component {
   }
 
   render () {
+
     return (
-      <div className="login jumbotron center-block">
-        <h1>Signup</h1>
+      <div className="login">
         <form role="form">
-        <div className="form-group">
-          <label htmlFor="username">Email</label>
-          <input type="text" valueLink={this.linkState('user')} className="form-control" id="email" placeholder="Email" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="extra">Invitation Code</label>
-          <input type="text" valueLink={this.linkState('extra')} className="form-control" id="code" ref="code" placeholder="You need an invitation code to sign up :-)" />
-        </div>
-        <button type="submit" className="btn btn-default" onClick={this.signup.bind(this)}>Submit</button>
-      </form>
-    </div>
+          <div className="row">
+            <div className="large-12 columns">
+              <input type="text" valueLink={this.linkState('user')} id="email" ref="email" placeholder="Email" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="large-12 columns">
+              <input type="password" valueLink={this.linkState('password')} id="password" ref="password" placeholder="Password" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="large-12 columns">
+              <input type="text" valueLink={this.linkState('code')} id="code" ref="code" placeholder="You need an invitation code to sign up :-)" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="large-12 large-centered columns">
+              <button type="submit" className="button expand" onClick={this.signup.bind(this)}>Signup</button>
+            </div>
+          </div>
+        </form>
+        <p>Aready have an account? <Link to="login">Login</Link></p>
+      </div>
     )
+
   }
 }
 

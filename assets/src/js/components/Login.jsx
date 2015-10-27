@@ -1,5 +1,6 @@
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
+import { Route, RouteHandler, Link } from 'react-router'
 import Auth from '../services/AuthService'
 
 export default class Login extends React.Component {
@@ -22,22 +23,30 @@ export default class Login extends React.Component {
   }
 
   render () {
+
     return (
-      <div className="login jumbotron center-block">
-        <h1>Login</h1>
+      <div className="login">
         <form role="form">
-        <div className="form-group">
-          <label htmlFor="username">Email</label>
-          <input type="text" valueLink={this.linkState('user')} className="form-control" id="email" placeholder="Email" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
-        </div>
-        <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
-      </form>
-    </div>
+          <div className="row">
+            <div className="large-12 columns">
+              <input type="text" valueLink={this.linkState('user')} id="email" ref="email" placeholder="Email" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="large-12 columns">
+              <input type="password" valueLink={this.linkState('password')} id="password" ref="password" placeholder="Password" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="large-12 large-centered columns">
+              <button type="submit" className="button expand" onClick={this.login.bind(this)}>Login</button>
+            </div>
+          </div>
+        </form>
+        <p>Don't have an account? <Link to="signup">Signup</Link></p>
+      </div>
     )
+
   }
 }
 
