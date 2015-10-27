@@ -2,7 +2,7 @@
 
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
-import { Route, RouteHandler, Link } from 'react-router'
+import { Link } from 'react-router'
 import AuthService from '../services/AuthService'
 
 export default class Signup extends React.Component {

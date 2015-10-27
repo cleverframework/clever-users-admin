@@ -2,12 +2,20 @@
 
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
-import { Route, RouteHandler, Link } from 'react-router'
+import { Link } from 'react-router'
+import { REDIRECTION_ON_AUTH_DONE } from '../constants/LoginConstants.js'
+import RouterContainer from '../services/RouterContainer'
 import AuthService from '../services/AuthService'
 
 export default class Logout extends React.Component {
 
   constructor () {
+
+    // Redirect to login if user is not logged
+    if (!localStorage.getItem('jwt')) {
+      return RouterContainer.get().transitionTo('/')
+    }
+
     super()
     this.state = {}
   }
@@ -17,8 +25,12 @@ export default class Logout extends React.Component {
     AuthService.logout()
   }
 
-  render () {
+  redirect (e) {
+    e.preventDefault()
+    location.href = REDIRECTION_ON_AUTH_DONE
+  }
 
+  render () {
     return (
       <div className="logout">
         <form role="form">
@@ -28,6 +40,7 @@ export default class Logout extends React.Component {
             </div>
           </div>
         </form>
+        <p>Don't want logout? <a href="#" onClick={this.redirect.bind(this)}>Go back</a>.</p>
       </div>
     )
 

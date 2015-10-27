@@ -25,7 +25,6 @@ const router = Router.create({ routes })
 RouterContainer.set(router)
 
 const jwt = localStorage.getItem('jwt')
-console.log(jwt)
 if (jwt) LoginActions.loginUser(jwt)
 
 router.run((Handler) => {

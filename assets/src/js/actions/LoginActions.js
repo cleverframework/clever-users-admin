@@ -1,7 +1,6 @@
 'use strict'
 
-import AppDispatcher from '../dispatchers/AppDispatcher.js'
-import { LOGIN_USER, LOGOUT_USER } from '../constants/LoginConstants.js'
+import { LOGIN_USER, LOGOUT_USER, REDIRECTION_ON_AUTH_DONE } from '../constants/LoginConstants.js'
 import RouterContainer from '../services/RouterContainer'
 
 export default {
@@ -9,21 +8,19 @@ export default {
 
     const savedJwt = localStorage.getItem('jwt')
 
-    AppDispatcher.dispatch({
-      actionType: LOGIN_USER,
-      jwt: jwt
-    })
-
     if (savedJwt !== jwt) {
       localStorage.setItem('jwt', jwt)
+
+      // TODO: Set the cookie as well
+
+      location.href = REDIRECTION_ON_AUTH_DONE
+    } else {
+      RouterContainer.get().transitionTo('/logout')
     }
 
   },
   logoutUser () {
-    RouterContainer.get().transitionTo('/')
     localStorage.removeItem('jwt')
-    AppDispatcher.dispatch({
-      actionType: LOGOUT_USER
-    })
+    RouterContainer.get().transitionTo('/')
   }
 }
