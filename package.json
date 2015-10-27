@@ -34,6 +34,7 @@
     "jwt-decode": "^1.1.0",
     "react": "^0.13",
     "react-mixin": "^1.1.0",
+    "react-redirect": "^1.0.0",
     "react-router": "^0.13.2",
     "reqwest": "^1.1.5",
     "when": "^3.7.2"

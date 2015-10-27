@@ -1,11 +1,12 @@
 'use strict'
 
 import React from 'react'
+import { REDIRECTION_ON_AUTH_DONE } from '../constants/LoginConstants.js'
 import LoginStore from '../stores/LoginStore'
 import { Route, RouteHandler, Link } from 'react-router'
-import AuthService from '../services/AuthService'
+import ReactRedirect from 'react-redirect'
 
-export default class AuthenticatedApp extends React.Component {
+export default class AuthApp extends React.Component {
   constructor() {
     super()
     this.state = this._getLoginState()
@@ -31,6 +32,14 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   render() {
+
+    if (this.state.userLoggedIn) {
+      return (
+        <ReactRedirect location={REDIRECTION_ON_AUTH_DONE}>
+        </ReactRedirect>
+      )
+    }
+
     return (
       <div className="large-3 large-centered columns">
         <div className="login-box">
@@ -43,11 +52,6 @@ export default class AuthenticatedApp extends React.Component {
         </div>
       </div>
     )
-  }
-
-  logout(e) {
-    e.preventDefault()
-    AuthService.logout()
   }
 
 }

@@ -1,3 +1,5 @@
+'use strict'
+
 import request from 'reqwest'
 import when from 'when'
 import { LOGIN_URL, SIGNUP_URL } from '../constants/LoginConstants'
@@ -21,14 +23,14 @@ class AuthService {
     LoginActions.logoutUser()
   }
 
-  signup (username, password, extra) {
+  signup (username, password, code) {
     return this.handleAuth(when(request({
       url: SIGNUP_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
       data: {
-        username, password, extra
+        username, password, code
       }
     })))
   }

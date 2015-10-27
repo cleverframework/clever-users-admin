@@ -1,3 +1,5 @@
+'use strict'
+
 let _router = null
 
 export default {

@@ -1,7 +1,9 @@
+'use strict'
+
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
 import { Route, RouteHandler, Link } from 'react-router'
-import Auth from '../services/AuthService'
+import AuthService from '../services/AuthService'
 
 export default class Signup extends React.Component {
 
@@ -10,13 +12,13 @@ export default class Signup extends React.Component {
     this.state = {
       user: '',
       password: '',
-      extra: ''
+      code: ''
     }
   }
 
   signup (e) {
     e.preventDefault()
-    Auth.signup(this.state.user, this.state.password, this.state.code)
+    AuthService.signup(this.state.user, this.state.password, this.state.code)
       .catch(err => {
         alert('There\'s an error signing up')
         console.error('Error signing up', err)
@@ -26,7 +28,7 @@ export default class Signup extends React.Component {
   render () {
 
     return (
-      <div className="login">
+      <div className="signup">
         <form role="form">
           <div className="row">
             <div className="large-12 columns">

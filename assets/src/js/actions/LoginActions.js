@@ -1,9 +1,12 @@
+'use strict'
+
 import AppDispatcher from '../dispatchers/AppDispatcher.js'
 import { LOGIN_USER, LOGOUT_USER } from '../constants/LoginConstants.js'
 import RouterContainer from '../services/RouterContainer'
 
 export default {
   loginUser (jwt) {
+
     const savedJwt = localStorage.getItem('jwt')
 
     AppDispatcher.dispatch({
@@ -12,15 +15,13 @@ export default {
     })
 
     if (savedJwt !== jwt) {
-      const nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/'
-
-      RouterContainer.get().transitionTo(nextPath);
       localStorage.setItem('jwt', jwt)
     }
+
   },
   logoutUser () {
-    RouterContainer.get().transitionTo('/login');
-    localStorage.removeItem('jwt');
+    RouterContainer.get().transitionTo('/')
+    localStorage.removeItem('jwt')
     AppDispatcher.dispatch({
       actionType: LOGOUT_USER
     })

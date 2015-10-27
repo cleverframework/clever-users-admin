@@ -1,7 +1,9 @@
+'use strict'
+
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
 import { Route, RouteHandler, Link } from 'react-router'
-import Auth from '../services/AuthService'
+import AuthService from '../services/AuthService'
 
 export default class Login extends React.Component {
 
@@ -15,7 +17,7 @@ export default class Login extends React.Component {
 
   login (e) {
     e.preventDefault()
-    Auth.login(this.state.user, this.state.password)
+    AuthService.login(this.state.user, this.state.password)
       .catch(function(err) {
         alert('There\'s an error logging in')
         console.error('Error logging in', err)
