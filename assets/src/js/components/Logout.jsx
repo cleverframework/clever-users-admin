@@ -12,7 +12,7 @@ export default class Logout extends React.Component {
   constructor () {
 
     // Redirect to login if user is not logged
-    if (!localStorage.getItem('jwt')) {
+    if (!localStorage.getItem(JWT_KEY_NAME)) {
       return RouterContainer.get().transitionTo('/')
     }
 

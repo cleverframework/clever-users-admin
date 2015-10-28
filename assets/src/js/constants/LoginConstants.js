@@ -2,6 +2,7 @@
 
 const BASE_URL = window.BASE_URL || 'http://localhost:3000'
 const API_BASE_URL = window.BASE_URL || 'http://localhost:3001'
+const KEY_PREFIX_NAME = window.COOKIE_PREFIX_NAME || 'cleverv1'
 
 export default {
   BASE_URL: BASE_URL,
@@ -9,6 +10,5 @@ export default {
   LOGIN_URL: `${API_BASE_URL}/sessions/create`,
   SIGNUP_URL: `${API_BASE_URL}/users`,
   REDIRECTION_ON_AUTH_DONE: `${BASE_URL}/dashboard`,
-  LOGIN_USER: 'LOGIN_USER',
-  LOGOUT_USER: 'LOGOUT_USER'
+  JWT_KEY_NAME: `${KEY_PREFIX_NAME}.jwt`
 }

@@ -1,18 +1,17 @@
 'use strict'
 
-import { LOGIN_USER, LOGOUT_USER, REDIRECTION_ON_AUTH_DONE } from '../constants/LoginConstants.js'
+import { REDIRECTION_ON_AUTH_DONE, JWT_KEY_NAME } from '../constants/LoginConstants.js'
 import RouterContainer from '../services/RouterContainer'
+import Cookies from 'cookies-js'
 
 export default {
   loginUser (jwt) {
 
-    const savedJwt = localStorage.getItem('jwt')
+    const savedJwt = localStorage.getItem(JWT_KEY_NAME)
 
     if (savedJwt !== jwt) {
-      localStorage.setItem('jwt', jwt)
-
-      // TODO: Set the cookie as well
-
+      localStorage.setItem(JWT_KEY_NAME, jwt)
+      Cookies.set(JWT_KEY_NAME, jwt)
       location.href = REDIRECTION_ON_AUTH_DONE
     } else {
       RouterContainer.get().transitionTo('/logout')
@@ -20,7 +19,8 @@ export default {
 
   },
   logoutUser () {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem(JWT_KEY_NAME)
+    Cookies.expire(JWT_KEY_NAME)
     RouterContainer.get().transitionTo('/')
   }
 }
