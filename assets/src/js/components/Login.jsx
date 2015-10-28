@@ -10,14 +10,14 @@ export default class Login extends React.Component {
   constructor () {
     super()
     this.state = {
-      user: '',
+      email: '',
       password: ''
     }
   }
 
   login (e) {
     e.preventDefault()
-    AuthService.login(this.state.user, this.state.password)
+    AuthService.login(this.state.email, this.state.password)
       .catch(function(err) {
         alert('There\'s an error logging in')
         console.error('Error logging in', err)
@@ -31,7 +31,7 @@ export default class Login extends React.Component {
         <form role="form">
           <div className="row">
             <div className="large-12 columns">
-              <input type="text" valueLink={this.linkState('user')} id="email" ref="email" placeholder="Email" />
+              <input type="text" valueLink={this.linkState('email')} id="email" ref="email" placeholder="Email" />
             </div>
           </div>
           <div className="row">

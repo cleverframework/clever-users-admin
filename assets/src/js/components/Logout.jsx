@@ -3,7 +3,7 @@
 import React from 'react/addons'
 import ReactMixin from 'react-mixin'
 import { Link } from 'react-router'
-import { REDIRECTION_ON_AUTH_DONE } from '../constants/LoginConstants.js'
+import { REDIRECTION_ON_AUTH_DONE, JWT_KEY_NAME } from '../constants/LoginConstants.js'
 import RouterContainer from '../services/RouterContainer'
 import AuthService from '../services/AuthService'
 

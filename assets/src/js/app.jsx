@@ -13,9 +13,6 @@ import Logout from './components/Logout'
 import RouterContainer from './services/RouterContainer'
 import LoginActions from './actions/LoginActions'
 
-
-console.log(Cookies)
-
 $(document).foundation()
 
 const routes = (
@@ -31,6 +28,10 @@ RouterContainer.set(router)
 
 const jwt = localStorage.getItem(JWT_KEY_NAME)
 if (jwt) LoginActions.loginUser(jwt)
+
+console.log(JWT_KEY_NAME)
+console.log(localStorage.getItem(JWT_KEY_NAME))
+console.log(Cookies.get(JWT_KEY_NAME))
 
 router.run((Handler) => {
   React.render(<Handler />, document.getElementById('content'))

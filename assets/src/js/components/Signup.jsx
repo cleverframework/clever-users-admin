@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
   constructor () {
     super()
     this.state = {
-      user: '',
+      email: '',
       password: '',
       code: ''
     }
@@ -18,7 +18,7 @@ export default class Signup extends React.Component {
 
   signup (e) {
     e.preventDefault()
-    AuthService.signup(this.state.user, this.state.password, this.state.code)
+    AuthService.signup(this.state.email, this.state.password, this.state.code)
       .catch(err => {
         alert('There\'s an error signing up')
         console.error('Error signing up', err)
@@ -32,7 +32,7 @@ export default class Signup extends React.Component {
         <form role="form">
           <div className="row">
             <div className="large-12 columns">
-              <input type="text" valueLink={this.linkState('user')} id="email" ref="email" placeholder="Email" />
+              <input type="text" valueLink={this.linkState('email')} id="email" ref="email" placeholder="Email" />
             </div>
           </div>
           <div className="row">

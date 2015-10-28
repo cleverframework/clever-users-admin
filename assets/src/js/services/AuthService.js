@@ -7,14 +7,14 @@ import LoginActions from '../actions/LoginActions'
 
 class AuthService {
 
-  login (username, password) {
+  login (email, password) {
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
       data: {
-        username, password
+        email, password
       }
     })))
   }
@@ -23,22 +23,22 @@ class AuthService {
     LoginActions.logoutUser()
   }
 
-  signup (username, password, code) {
+  signup (email, password, code) {
     return this.handleAuth(when(request({
       url: SIGNUP_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
       data: {
-        username, password, code
+        email, password, code
       }
     })))
   }
 
   handleAuth (loginPromise) {
     return loginPromise
-      .then(function(response) {
-        var jwt = response.id_token
+      .then(response => {
+        var jwt = response.token
         LoginActions.loginUser(jwt)
         return true
       })
