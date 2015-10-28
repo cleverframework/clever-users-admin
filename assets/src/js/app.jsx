@@ -29,10 +29,8 @@ const routes = (
 const router = Router.create({ routes })
 RouterContainer.set(router)
 
-const jwt = localStorage.getItem('cleverv1.jwt')
+const jwt = localStorage.getItem(JWT_KEY_NAME)
 if (jwt) LoginActions.loginUser(jwt)
-
-console.log(Cookies.get(JWT_KEY_NAME))
 
 router.run((Handler) => {
   React.render(<Handler />, document.getElementById('content'))
