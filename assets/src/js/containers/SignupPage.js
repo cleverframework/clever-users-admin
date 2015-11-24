@@ -18,12 +18,9 @@ class SignupPage extends Component {
 
     return (
       <div className='wrapper'>
-        {!!signupError &&
-          <div className='alert alert-danger' role='alert'>
-            {signupError}
-          </div>}
         <SignupForm
           isSigningUp={isSigningUp}
+          signupError={signupError}
           onSignup={this.onSignup.bind(this)} />
       </div>
     )

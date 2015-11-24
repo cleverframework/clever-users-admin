@@ -18,12 +18,9 @@ class LoginPage extends Component {
 
     return (
       <div className='wrapper'>
-        {!!loginError &&
-          <div className='alert alert-danger' role='alert'>
-            {loginError}
-          </div>}
         <LoginForm
           isLoggingIn={isLoggingIn}
+          loginError={loginError}
           onLogin={this.onLogin.bind(this)} />
       </div>
     )

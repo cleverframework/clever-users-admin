@@ -17,10 +17,14 @@ export default class SignupForm extends Component {
   }
 
   renderForm () {
-    const { isSigningUp } = this.props
+    const { isSigningUp, signupError } = this.props
     return (
       <form className='form-auth signup' onSubmit={this.onSubmit.bind(this)}>
         <h2 className='form-auth-heading'>Create an account</h2>
+        {!!signupError &&
+          <div className='alert alert-danger error' role='alert'>
+            {signupError}.
+          </div>}
         <input
           type='email'
           name='email'
@@ -62,5 +66,6 @@ export default class SignupForm extends Component {
 
 SignupForm.propTypes = {
   isSigningUp: PropTypes.bool.isRequired,
+  signupError: PropTypes.string,
   onSignup: PropTypes.func.isRequired
 }

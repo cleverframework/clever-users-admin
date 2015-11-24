@@ -4,7 +4,11 @@ export class Request {
 
   static _handleResponse (response) {
     if (response.status > 399) {
-      throw new Error(`${response.status} - ${response.statusText}`)
+      return new Promise((yep, nope) => {
+        response
+          .json()
+          .then(response => nope(response.error.message))
+      })
     }
     return response.json()
   }

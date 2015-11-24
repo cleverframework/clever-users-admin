@@ -16,10 +16,14 @@ export default class LoginForm extends Component {
   }
 
   renderForm () {
-    const { isLoggingIn } = this.props
+    const { isLoggingIn, loginError } = this.props
     return (
       <form className='form-auth login'>
         <h2 className='form-auth-heading'>Please login</h2>
+        {!!loginError &&
+          <div className='alert alert-danger error' role='alert'>
+            {loginError}
+          </div>}
         <input
           type='email'
           name='email'
@@ -54,5 +58,6 @@ export default class LoginForm extends Component {
 
 LoginForm.propTypes = {
   isLoggingIn: PropTypes.bool.isRequired,
+  loginError: PropTypes.string,
   onLogin: PropTypes.func.isRequired
 }
