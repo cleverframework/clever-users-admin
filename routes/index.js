@@ -1,19 +1,15 @@
 'use strict'
 
-// Require CleverCore
-const CleverCore = require('clever-core')
-
 // Packages dependencies
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 
 // Exports
-module.exports = function(UsersAdminPackage, app, config) {
-
-  router.get('/auth', (req, res, next) => {
-    res.send(UsersAdminPackage.render('auth'))
+module.exports = function (UsersAdminPackage, app, config) {
+  router.get('/login', (req, res, next) => res.send(UsersAdminPackage.render('auth')))
+  router.get('/signup', (req, res, next) => res.send(UsersAdminPackage.render('auth')))
+  router.get('/logout', (req, res, next) => {
+    res.clearCookie('cleverToken', { path: '/' })
+    res.redirect('/login')
   })
-
   return router
-
 }

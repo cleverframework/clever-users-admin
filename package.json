@@ -7,18 +7,16 @@
   "scripts": {
     "build": "npm run build-js && npm run build-css",
     "watch": "npm run watch-js && npm run watch-css",
-    "build-js": "browserify --extension=.jsx --extension=.js assets/src/js/app.jsx | uglifyjs > assets/dist/index.js",
-    "watch-js": "watchify --extension=.jsx --extension=.js assets/src/js/app.jsx -o assets/dist/index.js --debug --verbose",
+    "build-js": "browserify assets/src/js/index.js | uglifyjs > assets/dist/index.js",
+    "watch-js": "watchify assets/src/js/index.js -o assets/dist/index.js --debug --verbose",
     "watch-css": "sourdough -w -v assets/src/styl/index.styl assets/dist/index.css",
     "build-css": "sourdough -c assets/src/styl/index.styl assets/dist/index.css"
   },
   "browser": {
-    "jquery": "./node_modules/jquery/dist/jquery.js",
-    "foundation": "./node_modules/foundation-sites/js/foundation.js"
+    "jquery": "./node_modules/jquery/dist/jquery.js"
   },
   "browserify-shim": {
-    "jquery": "$",
-    "foundation": "foundation"
+    "jquery": "$"
   },
   "browserify": {
     "transform": [
@@ -27,17 +25,20 @@
     ]
   },
   "dependencies": {
+    "bootstrap": "^3.3.5",
     "cookies-js": "^1.2.2",
-    "flux": "^2.0.1",
-    "foundation-sites": "^5.5.3",
+    "history": "^1.13.0",
+    "isomorphic-fetch": "^2.1.1",
     "jquery": "^2.1.4",
-    "jwt-decode": "^1.1.0",
-    "react": "^0.13",
-    "react-mixin": "^1.1.0",
-    "react-redirect": "^1.0.0",
-    "react-router": "^0.13.2",
-    "reqwest": "^1.1.5",
-    "when": "^3.7.2"
+    "react": "^0.14.2",
+    "react-dom": "^0.14.0",
+    "react-mixin": "^2.0.2",
+    "react-redux": "^4.0.0",
+    "react-router": "^1.0.0",
+    "redux": "^3.0.0",
+    "redux-logger": "^2.0.2",
+    "redux-router": "^1.0.0-beta3",
+    "redux-thunk": "^0.1.0"
   },
   "devDependencies": {
     "babelify": "^6.1.0",
