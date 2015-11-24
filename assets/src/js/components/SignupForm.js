@@ -10,7 +10,7 @@ export default class SignupForm extends Component {
   onSubmit (e) {
     const { onSignup } = this.props
     e.preventDefault()
-    const email = this.refs.name.value
+    const email = this.refs.email.value
     const password = this.refs.password.value
     const invitationCode = this.refs.invitationCode.value
     onSignup(email, password, invitationCode)
@@ -19,7 +19,7 @@ export default class SignupForm extends Component {
   renderForm () {
     const { isSigningUp } = this.props
     return (
-      <form className='form-auth signup'>
+      <form className='form-auth signup' onSubmit={this.onSubmit.bind(this)}>
         <h2 className='form-auth-heading'>Create an account</h2>
         <input
           type='email'

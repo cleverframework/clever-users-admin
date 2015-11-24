@@ -1,6 +1,6 @@
 import { Request } from '../middlewares/api'
 import * as types from '../constants/ActionTypes'
-import { AUTH_URL } from '../constants/URLs'
+import { AUTHENTICATE_URL, USERS_URL } from '../constants/URLs'
 
 function loginRequest (name) {
   return { type: types.LOGIN_REQUEST }
@@ -17,7 +17,7 @@ function loginFailure (error) {
 export function login (email, password) {
   return dispatch => {
     dispatch(loginRequest())
-    Request.post(AUTH_URL, { email, password })
+    Request.post(AUTHENTICATE_URL, { email, password })
       .then(json => dispatch(loginSuccess(json)))
       .catch(err => dispatch(loginFailure(err)))
   }
@@ -38,7 +38,7 @@ function signupFailure (error) {
 export function signup (email, password, invitationCode) {
   return dispatch => {
     dispatch(signupRequest())
-    Request.post(AUTH_URL, { email, password, invitationCode })
+    Request.post(USERS_URL, { email, password, invitationCode })
       .then(json => dispatch(signupSuccess(json)))
       .catch(err => dispatch(signupFailure(err)))
   }

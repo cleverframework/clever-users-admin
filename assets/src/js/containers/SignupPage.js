@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import login from '../actions'
+import { signup } from '../actions'
 import SignupForm from '../components/SignupForm'
 
 class SignupPage extends Component {
@@ -10,7 +10,7 @@ class SignupPage extends Component {
 
   onSignup (email, password, invitationCode) {
     const { dispatch } = this.props
-    dispatch(login(email, password, invitationCode))
+    dispatch(signup(email, password, invitationCode))
   }
 
   render () {
