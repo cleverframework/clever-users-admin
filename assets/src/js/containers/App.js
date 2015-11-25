@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReactRedirect from 'react-redirect'
+import { REDIRECTION_LOGIN_SUCCESS_URL } from '../constants/URLs'
 
 class App extends Component {
   constructor (props) {
@@ -10,7 +11,12 @@ class App extends Component {
   render () {
     const { logged, children } = this.props
 
-    if (logged) return <ReactRedirect location='/'></ReactRedirect>
+    if (logged) {
+      return (
+        <ReactRedirect location={REDIRECTION_LOGIN_SUCCESS_URL}>
+        </ReactRedirect>
+      )
+    }
 
     return (
       <div className='wrapper'>

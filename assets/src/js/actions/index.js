@@ -7,7 +7,7 @@ function loginRequest () {
   return { type: types.LOGIN_REQUEST }
 }
 
-function loginSuccess (json) {
+export function loginSuccess (json) {
   return { type: types.LOGIN_SUCCESS, token: json.token }
 }
 
@@ -21,7 +21,6 @@ export function login (email, password) {
     Request.post(AUTHENTICATE_URL, { email, password })
       .then(json => {
         dispatch(loginSuccess(json))
-        // dispatch(pushState(null, '/'))
       })
       .catch(err => dispatch(loginFailure(err)))
   }

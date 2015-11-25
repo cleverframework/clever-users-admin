@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerStateReducer as router } from 'redux-router'
+import Cookies from 'cookies-js'
 import * as types from '../constants/ActionTypes'
+import { JWT_COOKIE_NAME } from '../constants/settings.js'
 
 function auth (state = {
   isLoggingIn: false,
@@ -17,6 +19,7 @@ function auth (state = {
         signupError: null // just in case
       })
     case types.LOGIN_SUCCESS:
+      Cookies.set(JWT_COOKIE_NAME, action.token)
       return Object.assign({}, state, {
         isLoggingIn: false,
         logged: true
