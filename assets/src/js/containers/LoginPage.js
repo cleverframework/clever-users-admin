@@ -17,12 +17,10 @@ class LoginPage extends Component {
     const { isLoggingIn, loginError } = this.props
 
     return (
-      <div className='wrapper'>
-        <LoginForm
-          isLoggingIn={isLoggingIn}
-          loginError={loginError}
-          onLogin={this.onLogin.bind(this)} />
-      </div>
+      <LoginForm
+        isLoggingIn={isLoggingIn}
+        loginError={loginError}
+        onLogin={this.onLogin.bind(this)} />
     )
   }
 }

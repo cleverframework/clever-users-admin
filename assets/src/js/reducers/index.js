@@ -12,7 +12,9 @@ function auth (state = {
   switch (action.type) {
     case types.LOGIN_REQUEST:
       return Object.assign({}, state, {
-        isLoggingIn: true
+        isLoggingIn: true,
+        loginError: null,
+        signupError: null // just in case
       })
     case types.LOGIN_SUCCESS:
       return Object.assign({}, state, {
@@ -26,12 +28,13 @@ function auth (state = {
       })
     case types.SIGNUP_REQUEST:
       return Object.assign({}, state, {
-        isSigningUp: true
+        isSigningUp: true,
+        signupError: null,
+        loginError: null  // just in case
       })
     case types.SIGNUP_SUCCESS:
       return Object.assign({}, state, {
-        isSigningUp: false,
-        logged: true
+        isSigningUp: false
       })
     case types.SIGNUP_FAILURE:
       return Object.assign({}, state, {

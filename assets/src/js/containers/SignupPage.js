@@ -17,12 +17,10 @@ class SignupPage extends Component {
     const { isSigningUp, signupError } = this.props
 
     return (
-      <div className='wrapper'>
-        <SignupForm
-          isSigningUp={isSigningUp}
-          signupError={signupError}
-          onSignup={this.onSignup.bind(this)} />
-      </div>
+      <SignupForm
+        isSigningUp={isSigningUp}
+        signupError={signupError}
+        onSignup={this.onSignup.bind(this)} />
     )
   }
 }

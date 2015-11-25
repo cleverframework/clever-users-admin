@@ -10,7 +10,7 @@ export default class LoginForm extends Component {
   onSubmit (e) {
     const { onLogin } = this.props
     e.preventDefault()
-    const email = this.refs.name.value
+    const email = this.refs.email.value
     const password = this.refs.password.value
     onLogin(email, password)
   }
@@ -18,11 +18,11 @@ export default class LoginForm extends Component {
   renderForm () {
     const { isLoggingIn, loginError } = this.props
     return (
-      <form className='form-auth login'>
+      <form className='form-auth login' onSubmit={this.onSubmit.bind(this)}>
         <h2 className='form-auth-heading'>Please login</h2>
         {!!loginError &&
           <div className='alert alert-danger error' role='alert'>
-            {loginError}
+            {loginError}.
           </div>}
         <input
           type='email'

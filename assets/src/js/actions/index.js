@@ -1,8 +1,9 @@
+import { pushState } from 'redux-router';
 import { Request } from '../middlewares/api'
 import * as types from '../constants/ActionTypes'
 import { AUTHENTICATE_URL, USERS_URL } from '../constants/URLs'
 
-function loginRequest (name) {
+function loginRequest () {
   return { type: types.LOGIN_REQUEST }
 }
 
@@ -18,17 +19,20 @@ export function login (email, password) {
   return dispatch => {
     dispatch(loginRequest())
     Request.post(AUTHENTICATE_URL, { email, password })
-      .then(json => dispatch(loginSuccess(json)))
+      .then(json => {
+        dispatch(loginSuccess(json))
+        // dispatch(pushState(null, '/'))
+      })
       .catch(err => dispatch(loginFailure(err)))
   }
 }
 
-function signupRequest (name) {
+function signupRequest () {
   return { type: types.SIGNUP_REQUEST }
 }
 
 function signupSuccess (json) {
-  return { type: types.SIGNUP_SUCCESS, token: json.token }
+  return { type: types.SIGNUP_SUCCESS, json }
 }
 
 function signupFailure (error) {
@@ -39,7 +43,10 @@ export function signup (email, password, invitationCode) {
   return dispatch => {
     dispatch(signupRequest())
     Request.post(USERS_URL, { email, password, invitationCode })
-      .then(json => dispatch(signupSuccess(json)))
+      .then(json => {
+        dispatch(signupSuccess(json))
+        dispatch(pushState(null, '/login'))
+      })
       .catch(err => dispatch(signupFailure(err)))
   }
 }
